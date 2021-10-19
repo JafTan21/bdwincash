@@ -5,9 +5,8 @@ import useApi from './components/Inc/Api';
 import Auth from './components/Auth/Auth';
 import axios from 'axios';
 import Admin from './Admin';
-import { Suspense } from 'react';
 import User from './User';
-const Activator = lazy(() => import('./components/Inc/Activator'));
+import Activator from './components/Inc/Activator';
 
 
 
@@ -60,10 +59,6 @@ export default function App() {
                 });
         }
     }, []);
-
-    useEffect(() => {
-        console.log(siteActivated);
-    }, [siteActivated])
 
     useEffect(() => {
         if (Auth() && !isAdmin && document.getElementById('user-balance')) {

@@ -6,29 +6,12 @@ import Footer from './components/Admin/Footer';
 import Sidebar from './components/Admin/Sidebar';
 
 
-const Loading = () => {
-    return <div style={{
-        display: 'flex',
-        justifyContent: 'center',
-        padding: '60px',
-        position: 'absolute',
-        zIndex: '9999',
-        left: '0',
-        right: '0',
-        margin: '100px',
-    }}>
-        <div className="spinner-border p-2 m-auto bg-transparent text-success" role="status">
-            <span className="sr-only">Loading...</span>
-        </div>
-    </div>;
-}
-
 export default function Admin() {
 
     return (
 
-        <BrowserRouter>
-            <Suspense fallback={<Loading />}>
+        <Suspense>
+            <BrowserRouter>
                 <div className="wrapper">
                     <Nav />
                     <Sidebar />
@@ -45,7 +28,7 @@ export default function Admin() {
                     </div>
                     <Footer />
                 </div>
-            </Suspense>
-        </BrowserRouter>
+            </BrowserRouter>
+        </Suspense>
     )
 }
