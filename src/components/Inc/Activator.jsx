@@ -17,6 +17,8 @@ export default function Activator() {
             domain: domain,
         })
             .then(res => {
+                console.log(res)
+
                 handleSuccessError(res);
             });
     }

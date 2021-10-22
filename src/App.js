@@ -38,13 +38,18 @@ export default function App() {
             user.roles.some(role => role.name == 'Admin') :
             false
     );
+    const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
 
 
-        axios.post(`${api}/check-security-key`)
+        axios.post(`${api}/check-security-key`, {
+            domain: window.location.host
+        })
             .then(res => {
                 setSiteActivated(res.data.activated);
+                console.log(res)
+                setLoaded(true);
             });
 
         if (window.localStorage.getItem('user')) {
@@ -66,6 +71,10 @@ export default function App() {
             document.getElementById('user-balance').innerHTML = `$${user.balance}`;
         }
     }, [user]);
+
+    if (!loaded) {
+        return <Loading />
+    }
 
     if (siteActivated == '0') {
         return <Activator />
